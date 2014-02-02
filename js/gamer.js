@@ -47,7 +47,7 @@ var Gamer = {
         var hidden = hidden || false;
         var $field = $(document.createElement('div'));
         $field.addClass('field');
-
+        console.log(this.field);
         if(active) $field.addClass('active');
         for(var i = 0; i < this.field.length; i++) {
             var $row = $(document.createElement('div'));
@@ -57,6 +57,12 @@ var Gamer = {
                 $cell.addClass('cell');
                 if(this.field[j][i] == this.configCells.SHIP && !hidden) {
                     $cell.addClass('ship');
+                }
+                if(this.field[j][i] == this.configCells.HIT) {
+                    $cell.addClass('hit');
+                }
+                if(this.field[j][i] == this.configCells.MISS) {
+                    $cell.addClass('miss');
                 }
                 $cell.data('x',j);
                 $cell.data('y',i);
@@ -74,15 +80,16 @@ var Gamer = {
         if( this.field[x][y] == this.configCells.SHIP)  {
             out.ship = this._updateShips(x,y);
             out.result = this.configCells.SHIP;
-            this.field[x][y] == this.configCells.HIT;
+            this.field[x][y] = this.configCells.HIT;
+            console.log(this.field[x][y]);
         }
         else if( this.field[x][y] == this.configCells.HIT) {
             out.result = this.configCells.HIT;
-            this.field[x][y] == this.configCells.HIT;
+            this.field[x][y] = this.configCells.HIT;
         }
         else {
             out.result = this.configCells.MISS;
-            this.field[x][y] == this.configCells.MISS;
+            this.field[x][y] = this.configCells.MISS;
 
         }
         return out;
@@ -96,53 +103,45 @@ var Gamer = {
             var x9 = x + 1 <= 9;
             var y0 = y - 1 >= 0;
             var y9 = y + 1 <= 9;
-;
+
             if(ship.orientation == 0) {
-                console.log("orientation 0");
                 if(p == 0) {
-                    console.log("start");
                     if(x0 && y0)    field[x-1]  [y-1] = this.configCells.MISS;
                     if(y0)          field[x]    [y-1] = this.configCells.MISS;
                     if(x0)          field[x-1]  [y] = this.configCells.MISS;
                     if(x0 && y9)    field[x-1]  [y+1] = this.configCells.MISS;
                     if(y9)          field[x]    [y+1] = this.configCells.MISS;
+                } else {
+                    if(y0)          field[x]    [y-1] = this.configCells.MISS;
+                    if(y9)          field[x]    [y+1] = this.configCells.MISS;
                 }
-                else if( p  == ship.size - 1) {
-                    console.log("finish");
+                if( p  == ship.size - 1) {
                     if(y0)          field[x]    [y-1] = this.configCells.MISS;
                     if(x9 && y0)    field[x+1]  [y-1] = this.configCells.MISS;
                     if(x9)          field[x+1]  [y] = this.configCells.MISS;
                     if(y9)          field[x]    [y+1] = this.configCells.MISS;
                     if(x9 && y9)    field[x+1]  [y+1] = this.configCells.MISS;
                 }
-                else {
-                    console.log("body");
-                    if(y0)          field[x]    [y-1] = this.configCells.MISS;
-                    if(y9)          field[x]    [y+1] = this.configCells.MISS;
-                }
             } else if(ship.orientation == 1) {
-                console.log("orientation 1");
                 if(p == 0) {
-                    if(x0) field[x-1][y] = this.configCells.MISS;
-                    if(x0 && y0) field[x-1][y-1] = this.configCells.MISS;
-                    if(y0) field[x][y-1] = this.configCells.MISS;
-                    if(x9 && y9) field[x+1][y+1] = this.configCells.MISS;
-                    if(x9) field[x+1][y] = this.configCells.MISS;
+                    if(x0)          field[x-1]  [y] = this.configCells.MISS;
+                    if(x0 && y0)    field[x-1]  [y-1] = this.configCells.MISS;
+                    if(y0)          field[x]    [y-1] = this.configCells.MISS;
+                    if(x9 && y9)    field[x+1]  [y-1] = this.configCells.MISS;
+                    if(x9)          field[x+1]  [y] = this.configCells.MISS;
+                } else {
+                    if(x0)          field[x-1]  [y] = this.configCells.MISS;
+                    if(x9)          field[x+1]  [y] = this.configCells.MISS;
                 }
-                else if( p  == ship.size) {
-                    if(x0) field[x-1][y] = this.configCells.MISS;
-                    if(x0 && y9) field[x-1][y+1] = this.configCells.MISS;
-                    if(y9) field[x][y+1] = this.configCells.MISS;
-                    if(x9 && y9) field[x+1][y+1] = this.configCells.MISS;
-                    if(x9) field[x+1][y] = this.configCells.MISS;
-                }
-                else {
-                    if(x0) field[x-1][y] = this.configCells.MISS;
-                    if(x9) field[x+1][y] = this.configCells.MISS;
+                if( p  == ship.size - 1) {
+                    if(x0)          field[x-1]  [y] = this.configCells.MISS;
+                    if(x0 && y9)    field[x-1]  [y+1] = this.configCells.MISS;
+                    if(y9)          field[x]    [y+1] = this.configCells.MISS;
+                    if(x9 && y9)    field[x+1]  [y+1] = this.configCells.MISS;
+                    if(x9)          field[x+1]  [y] = this.configCells.MISS;
                 }
             }
         }
-        console.log(field);
     },
     _clearField: function(callback) {
         var f = [];

@@ -33,10 +33,12 @@ var battleship = {
     },
     renderUserField: function() {
         var $c = this.config.$container;
+        $c.find('.user .field').remove();
         $c.find('.user').append(this.user.renderField(true));
     },
     renderOpponentField: function() {
         var $c = this.config.$container;
+        $c.find('.opponent .field').remove();
         $c.find('.opponent').append(this.opponent.renderField(false,true));
     },
     run: function(params) {
@@ -67,17 +69,21 @@ var battleship = {
 
     },
     clickOpponentCell: function(e) {
-        console.log(e.data.clickOpponentCell.caller);
-        e.data.user.moves++;
-        console.log("ход: " + e.data.move + " #" + e.data.user.moves);
+        var bs = e.data;
+        bs.user.moves++;
+        console.log("ход: " + bs.move + " #" + bs.user.moves);
         var x = $(this).data('x');
         var y = $(this).data('y');
-        var shoot = e.data.opponent.shoot(x,y);
-        if(shoot.result == e.data.opponent.configCells.SHIP) {
+        var shoot_result = bs.opponent.shoot(x,y);
+        if(shoot_result.result == bs.opponent.configCells.SHIP) {
             $(this).addClass('hit');
+            if(shoot_result.ship.status == 2) {
+                bs.opponent.shipShadow(shoot_result.ship, bs.opponent.field);
+                bs.renderOpponentField();
+            }
         }
         else {
-            e.data._toggleMove();
+            bs._toggleMove();
             $(this).addClass('miss');
         };
     },
@@ -126,8 +132,10 @@ var battleship = {
                 // если добили, переходим к дальнейшиму поиску к
                 else if(shoot_result.ship.status == 2) {
                     bs.opponent.shipShadow(shoot_result.ship, bs.opponent.enemyField);
+                    bs.user.shipShadow(shoot_result.ship, bs.user.field);
                     bs.opponent.finishShip = {};
                     console.log("УБИТ");
+                    bs.renderUserField();
                     bs.opponent.setSearchStrategy();
                 }
                 delete shoot_result;
