@@ -1,17 +1,35 @@
 /* Общие стили */
+html, body {
+    height: 100%;
+}
 body {
     background: #666;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 .main {
-    background: #efefef;
+    top: 75px;
+    background: #dcdcdc;
     width: 800px;
     min-height: 400px;
+    height: 60%;
     margin: 0 auto;
-    border: 1px solid #333;
-    box-shadow: 2px 2px 5px #333;
+    box-shadow: 2px 2px 15px 10px #444;
     position: relative;
     border-radius: 5px;
+    overflow: hidden;
+}
+.panel-left {
+    width: 200px;
+    height: 100%;
+    float: left;
+    background: #222;
+    padding: 0 15px 0 15px;
+    color: #efefef;
+}
+.panel-left h1 {
+    font-size: 1.5em;
+}
+.content {
     padding: 15px;
 }
 .hidden {
@@ -36,9 +54,8 @@ body {
 
 .user,
 .opponent {
-    width: 320px;
     float: left;
-    padding: 20px 0 20px 80px;
+    padding: 0px 30px 20px 30px;
 }
 .name {
     font-weight: bold;
@@ -47,9 +64,11 @@ body {
 .field {
     border-collapse: collapse;
     display: table;
+    background: #fff;
 }
 .field.active {
     outline: 5px solid lightgreen;
+    box-shadow: 0 0 15px 10px lightgreen;
 }
 .field .row {
     overflow: hidden;
@@ -60,7 +79,7 @@ body {
     width: 20px;
     height: 20px;
     padding: 0;
-    border: 1px solid #b0c4de;
+    border: 1px solid #79a6de;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -74,7 +93,7 @@ body {
 }
 .field .row .cell.miss {
     text-align: center;
-    color: grey;
+    color: #898989;
     background: lightgrey;
 }
 
