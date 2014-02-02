@@ -1,20 +1,22 @@
 var AI = function(username) {
 
     this.username = username;
+    this.id = 'ai';
     this.lastSuccessShoot = [];
     this.firstSuccessShoot = [];
     this.turn = false;
     this.strategy = "search";
     this.finishShip = {};
     this.timeout = 500;
+
     this.generateShoots = function(step) {
         var shoots = [];
-        var offset = 0;
+        var offset = - step - 1;
 
         for(var i = 0; i < this.enemyField.length; i++) {
             var j = offset;
             while(j + step <= this.enemyField[i].length) {
-                j = j + step - 1;
+                j = j + step;
                 if(j >= 0 && this.enemyField[i][j] == this.configCells.EMPTY) {
                     shoots.push([i,j]);
                 }

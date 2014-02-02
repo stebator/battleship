@@ -3,7 +3,7 @@ html, body {
     height: 100%;
 }
 body {
-    background: #666;
+    background: #222 url("../img/Poltava1909-1949a.jpg") 50% 50% no-repeat;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 .main {
@@ -50,6 +50,10 @@ body {
 .cell-spec-50 { width: 50%; }
 .cell-spec-75 { width: 75%; }
 
+.cell-spec-micro {
+    font-size: 0.6em;
+    line-height: 1.1em;
+}
 /* Игра */
 
 .user,
@@ -67,14 +71,18 @@ body {
     background: #fff;
 }
 .field.active {
-    outline: 5px solid lightgreen;
     box-shadow: 0 0 15px 10px lightgreen;
+    filter:
+        progid:DXImageTransform.Microsoft.Shadow(color='#90EE90', Direction=45, Strength=6)
+        progid:DXImageTransform.Microsoft.Shadow(color='#90EE90', Direction=135, Strength=6)
+        progid:DXImageTransform.Microsoft.Shadow(color='#90EE90', Direction=225, Strength=6)
+        progid:DXImageTransform.Microsoft.Shadow(color='#90EE90', Direction=315, Strength=6);
 }
-.field .row {
+.row {
     overflow: hidden;
     display: table-row;
 }
-.field .row .cell {
+.cell {
     display: table-cell;
     width: 20px;
     height: 20px;
@@ -84,14 +92,17 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
-.field .row .cell.ship {
+.cell-micro {
+    height: 8px;
+    width: 8px;
+}
+.cell.ship {
     background: green;
 }
-.field .row .cell.hit {
+.cell.hit {
     background: red;
 }
-.field .row .cell.miss {
+.cell.miss {
     text-align: center;
     color: #898989;
     background: lightgrey;

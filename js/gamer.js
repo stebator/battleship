@@ -24,6 +24,7 @@ var Gamer = {
         MISS:  3
     },
     moves: 0,
+    status: 0,
     ships: [],
     field: {},
     enemyField: {},
@@ -35,7 +36,6 @@ var Gamer = {
         });
         this._clearField(function(arr) {
             g.field = arr;
-            console.log(g.field);
             for(var ship in g.configShips) {
                 g._placeShip(ship, g.configShips[ship], g.configShips[ship].count);
             }
@@ -47,7 +47,6 @@ var Gamer = {
         var hidden = hidden || false;
         var $field = $(document.createElement('div'));
         $field.addClass('field');
-        console.log(this.field);
         if(active) $field.addClass('active');
         for(var i = 0; i < this.field.length; i++) {
             var $row = $(document.createElement('div'));
@@ -72,6 +71,64 @@ var Gamer = {
             $row.appendTo($field);
         }
         return $field;
+    },
+    renderStats: function() {
+        var $out = $(document.createElement('div'));
+        var ships = {};
+        var c = 1;
+        var deads = 0;
+        for(var s = 0; s < this.ships.length; s++) {
+
+            if(typeof ships[this.ships[s].name] == 'undefined') c = 1;
+            if(this.ships[s].status != 2) {
+                ships[this.ships[s].name] = c++;
+
+                if(ships[this.ships[s].name] == 1) {
+                    var $row = $(document.createElement('div'));
+                    $row.addClass('row-spec');
+                    $row.addClass('spec-' + this.ships[s].name);
+
+                    var $cell1 = $(document.createElement('div'));
+                    $cell1.addClass('cell-spec cell-spec-75');
+
+                    var $row1 = $(document.createElement('div'));
+
+                    for(var i = 0; i < this.ships[s].size; i++) {
+                        var $cell = $(document.createElement('div'));
+                        $cell.addClass('cell cell-micro ship');
+                        $cell.appendTo($row1);
+                    }
+
+                    $cell1.appendTo($row);
+
+                    $row1.addClass('row').appendTo($cell1);
+
+                    var $cell2 = $(document.createElement('div'));
+                    $cell2.html(ships[this.ships[s].name]);
+                    $cell2.addClass('cell-spec cell-spec-25 cell-spec-micro');
+                    $cell2.prop("id", this.id + "-stats-"+this.ships[s].name);
+
+                    $cell2.appendTo($row);
+
+                    $row.appendTo($out);
+                }
+            }
+            else
+            if(this.ships[s].status == 2) {
+                deads++;
+            }
+
+
+
+
+            $out.find("#" + this.id + "-stats-" + this.ships[s].name)
+                .html(ships[this.ships[s].name]);
+
+        }
+        if(this.ships.length == deads) {
+            this.status = 1;
+        }
+        return $out.html();
     },
     shoot: function(x,y) {
 

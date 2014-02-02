@@ -5,7 +5,7 @@ var battleship = {
             title: "Морской бой",
             $container: $("#main"),
             $templates: $("#bsTemplates"),
-            opponentName: "Компьютер"
+            opponentName: "AI"
         };
 
         $.extend(this.config, settings);
@@ -35,11 +35,22 @@ var battleship = {
         var $c = this.config.$container;
         $c.find('.user .field').remove();
         $c.find('.user').append(this.user.renderField(true));
+
+        this.renderUserStats();
     },
     renderOpponentField: function() {
         var $c = this.config.$container;
         $c.find('.opponent .field').remove();
         $c.find('.opponent').append(this.opponent.renderField(false,true));
+        this.renderOpponentStats();
+    },
+    renderUserStats: function() {
+        var $c = this.config.$container;
+        $c.find('.user .stats').html(this.user.renderStats());
+    },
+    renderOpponentStats: function() {
+        var $c = this.config.$container;
+        $c.find('.opponent .stats').html(this.opponent.renderStats());
     },
     run: function(params) {
         this.user = new User(params.username);
@@ -54,6 +65,12 @@ var battleship = {
         this.opponent.init(this.renderOpponentField);
 
 
+    },
+    win: function() {
+        alert('win!');
+    },
+    gameOver: function() {
+        alert('game over!');
     },
     submitGetUserName: function(e) {
         console.log(e);
@@ -86,6 +103,10 @@ var battleship = {
             bs._toggleMove();
             $(this).addClass('miss');
         };
+
+        if(bs.opponent.status == 1) {
+            bs.win();
+        }
     },
     shootUserCell: function() {
         var bs = battleship;
@@ -137,9 +158,11 @@ var battleship = {
                     console.log("УБИТ");
                     bs.renderUserField();
                     bs.opponent.setSearchStrategy();
+                    if(bs.user.status == 1) {
+                        bs.gameOver();
+                    }
                 }
                 delete shoot_result;
-//                bs.shootUserCell();
                 bs.opponent.current_timeout = setTimeout(bs.shootUserCell, bs.opponent.timeout);
 
             }
