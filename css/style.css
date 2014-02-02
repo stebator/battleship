@@ -1,0 +1,80 @@
+/* Общие стили */
+body {
+    background: #666;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.main {
+    background: #efefef;
+    width: 800px;
+    min-height: 400px;
+    margin: 0 auto;
+    border: 1px solid #333;
+    box-shadow: 2px 2px 5px #333;
+    position: relative;
+    border-radius: 5px;
+    padding: 15px;
+}
+.hidden {
+    display: none;
+}
+.fleft {
+    float: left;
+}
+/* Запрос имени пользователя + правила */
+.row-spec {
+    overflow: hidden;
+}
+.cell-spec {
+    float: left;
+    width: 100%;
+}
+.cell-spec-25 { width: 25%; }
+.cell-spec-50 { width: 50%; }
+.cell-spec-75 { width: 75%; }
+
+/* Игра */
+
+.user,
+.opponent {
+    width: 320px;
+    float: left;
+    padding: 20px 0 20px 80px;
+}
+.name {
+    font-weight: bold;
+    color: #444;
+}
+.field {
+    border-collapse: collapse;
+    display: table;
+}
+.field.active {
+    outline: 5px solid lightgreen;
+}
+.field .row {
+    overflow: hidden;
+    display: table-row;
+}
+.field .row .cell {
+    display: table-cell;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid #b0c4de;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.field .row .cell.ship {
+    background: green;
+}
+.field .row .cell.hit {
+    background: red;
+}
+.field .row .cell.miss {
+    text-align: center;
+    color: grey;
+    background: lightgrey;
+}
+

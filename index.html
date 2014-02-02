@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BATTLESHIP - Морской бой</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" >
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/vendor/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/gamer.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/ai.js"></script>
+    <script type="text/javascript" src="js/battleship.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            battleship.init();
+        });
+    </script>
+</head>
+<body>
+    <div id="main" class="main">
+        <noscript class="alert alert-error">
+            "Морской бой" недоступен без JavaScript. Включите выполнение JavaScript-сценариев в настройках браузера.<br />
+            "Battleship" is not available when JavaScript is turned off. Please turn on JavaScript scenarios in your browser settings.
+        </noscript>
+    </div>
+
+    <div class="hidden" id="bsTemplates">
+
+        <div class="bsMain">
+            <h1></h1>
+            <div class="leftPanel"></div>
+            <div class="content"></div>
+        </div>
+
+        <div class="bsGetUserName">
+            <form action="" id="formGetUserName">
+                <label for="username">Введите имя пользователя:</label>
+                <input id="username" type="text" name="username" />
+                <button id="sumbitUserName" type="submit">Начать игру!</button>
+                <h2>Правила игры</h2>
+                <div class="row-spec">
+                    <div class="cell-spec cell-spec-50">
+                        <div class="row-spec">
+                            <div class="cell-spec cell-spec-25">
+                                <div class="field">
+                                    <div class="row">
+                                        <div class="cell ship"></div>
+                                        <div class="cell ship"></div>
+                                        <div class="cell ship"></div>
+                                        <div class="cell ship"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell-spec cell-spec-25"> 1 линкор</div>
+                        </div>
+                        <div class="row-spec">
+                            <div class="cell-spec cell-spec-25">
+                                <div class="field">
+                                    <div class="row">
+                                        <div class="cell ship"></div>
+                                        <div class="cell ship"></div>
+                                        <div class="cell ship"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell-spec cell-spec-25"> 2 крейсера</div>
+                        </div>
+                        <div class="row-spec">
+                            <div class="cell-spec cell-spec-25">
+                                <div class="field">
+                                    <div class="row">
+                                        <div class="cell ship"></div>
+                                        <div class="cell ship"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cell-spec cell-spec-25"> 3 эсминца</div>
+                        </div>
+                        <div class="row-spec">
+                            <div class="cell-spec cell-spec-25">
+                                <div class="field">
+                                    <div class="row">
+                                        <div class="cell ship"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cell-spec cell-spec-25"> 4 подлодки</div>
+                        </div>
+                    </div>
+                    <div class="cell-spec cell-spec-50">
+                        Корабли размещаются в случайном порядке.<br>
+                        При размещении не касаются углами и блоки корабля расположены на одной линии.
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="bsRun">
+            <div class="user">
+                <h2 class="name"></h2>
+            </div>
+            <div class="opponent">
+                <h2 class="name"></h2>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
