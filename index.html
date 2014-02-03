@@ -31,21 +31,25 @@
         <div class="bsMain">
             <div class="panel-left">
                 <h1></h1>
-
+                <div class="footer">
+                <div class="row-spec">
+                    <div class="cell-spec-75">
+                        Перезапуск - <b>F5</b>
+                    </div>
+                    <div class="cell-spec-25"></div>
+                </div>
+                </div>
             </div>
             <div class="content"></div>
         </div>
 
         <div class="bsGetUserName">
-            <form action="" id="formGetUserName">
-                <label for="username">Введите имя пользователя:</label>
-                <input id="username" type="text" name="username" />
-                <button id="sumbitUserName" type="submit">Начать игру!</button>
+
                 <h2>Правила игры</h2>
                 <div class="row-spec">
                     <div class="cell-spec cell-spec-50">
                         <div class="row-spec">
-                            <div class="cell-spec cell-spec-25">
+                            <div class="cell-spec cell-spec-50">
                                 <div class="field">
                                     <div class="row">
                                         <div class="cell ship"></div>
@@ -55,10 +59,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cell-spec cell-spec-25"> 1 линкор</div>
+                            <div class="cell-spec cell-spec-50"> 1 линкор</div>
                         </div>
                         <div class="row-spec">
-                            <div class="cell-spec cell-spec-25">
+                            <div class="cell-spec cell-spec-50">
                                 <div class="field">
                                     <div class="row">
                                         <div class="cell ship"></div>
@@ -67,10 +71,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cell-spec cell-spec-25"> 2 крейсера</div>
+                            <div class="cell-spec cell-spec-50"> 2 крейсера</div>
                         </div>
                         <div class="row-spec">
-                            <div class="cell-spec cell-spec-25">
+                            <div class="cell-spec cell-spec-50">
                                 <div class="field">
                                     <div class="row">
                                         <div class="cell ship"></div>
@@ -79,10 +83,10 @@
                                 </div>
                             </div>
 
-                            <div class="cell-spec cell-spec-25"> 3 эсминца</div>
+                            <div class="cell-spec cell-spec-50"> 3 эсминца</div>
                         </div>
                         <div class="row-spec">
-                            <div class="cell-spec cell-spec-25">
+                            <div class="cell-spec cell-spec-50">
                                 <div class="field">
                                     <div class="row">
                                         <div class="cell ship"></div>
@@ -90,23 +94,31 @@
                                 </div>
                             </div>
 
-                            <div class="cell-spec cell-spec-25"> 4 подлодки</div>
+                            <div class="cell-spec cell-spec-50"> 4 подлодки</div>
                         </div>
-                    </div>
-                    <div class="cell-spec cell-spec-50">
-                        Корабли размещаются в случайном порядке.<br>
-                        При размещении не касаются углами и блоки корабля расположены на одной линии.
-
-                        Для начала новой партии нажмите F5.
                     </div>
                 </div>
+                <div class="row-spec">
+                    <div class="cell-spec cell-spec-100">
+                        <p>
+                            Корабли размещаются в случайном порядке.<br>
+                            При размещении не касаются углами и блоки корабля расположены на одной линии.
 
+                            Для начала новой партии нажмите F5.
+                        </p>
+
+                    </div>
+                </div>
+            <form action="" id="formGetUserName">
+                <label for="username">Введите имя пользователя:</label>
+                <input id="username" type="text" name="username" />
+                <button id="sumbitUserName" type="submit">Начать игру!</button>
             </form>
         </div>
 
         <div class="bsRun">
             <div class="user">
-                <div class="row-spec">
+                <div class="row-spec head">
                     <div class="cell-spec cell-spec-75">
                         <h2 class="name"></h2>
                     </div>
@@ -117,7 +129,7 @@
 
             </div>
             <div class="opponent">
-                <div class="row-spec">
+                <div class="row-spec head">
                     <div class="cell-spec cell-spec-75">
                         <h2 class="name"></h2>
                     </div>

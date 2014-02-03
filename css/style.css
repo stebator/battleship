@@ -25,9 +25,23 @@ body {
     background: #222;
     padding: 0 15px 0 15px;
     color: #efefef;
+    margin-right: 15px;
+    position: relative;
+    overflow: hidden;
 }
 .panel-left h1 {
     font-size: 1.5em;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background: #222;
+    padding: 0 15px 0 15px;
+    font-size: 0.8em;
+
 }
 .content {
     padding: 15px;
@@ -61,9 +75,15 @@ body {
     float: left;
     padding: 0px 30px 20px 30px;
 }
+.head {
+    height: 60px;
+    overflow: hidden;
+}
 .name {
     font-weight: bold;
     color: #444;
+    margin: 0;
+    font-size: 0.8em;
 }
 .field {
     border-collapse: collapse;
