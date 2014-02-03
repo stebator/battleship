@@ -38,10 +38,15 @@ var battleship = {
 
         this.renderUserStats();
     },
-    renderOpponentField: function() {
+    renderOpponentField: function(settings) {
+        var settings_inner = {
+            active: false,
+            hidden: true
+        };
+        $.extend(settings_inner, settings)
         var $c = this.config.$container;
         $c.find('.opponent .field').remove();
-        $c.find('.opponent').append(this.opponent.renderField(false,true));
+        $c.find('.opponent').append(this.opponent.renderField(settings_inner.active, settings_inner.hidden));
         this.renderOpponentStats();
     },
     renderUserStats: function() {
@@ -159,6 +164,7 @@ var battleship = {
                     bs.renderUserField();
                     bs.opponent.setSearchStrategy();
                     if(bs.user.status == 1) {
+                        bs.renderOpponentField({hidden: false});
                         bs.gameOver();
                     }
                 }
